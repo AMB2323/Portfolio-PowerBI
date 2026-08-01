@@ -27,8 +27,7 @@ function Hero() {
     >
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="mb-4 font-mono text-xs text-muted">
-          <span className="text-accent">●</span> {profile.availability} ·{" "}
-          {profile.location}
+          <span className="text-accent">●</span> {profile.subtitle}
         </p>
         <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
           {profile.name}
@@ -43,7 +42,7 @@ function Hero() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="#projets"
-            className="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-semibold text-background transition-opacity hover:opacity-90"
+            className="bg-accent-gradient rounded-md px-5 py-2.5 font-mono text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
             Voir les projets
           </Link>
@@ -62,8 +61,11 @@ function Hero() {
           {profile.kpis.map((kpi, i) => (
             <Reveal key={kpi.label} delay={i * 90}>
               <div className="rounded-lg border border-border bg-background p-4">
-                <div className="mb-3 h-0.5 w-8 bg-accent" aria-hidden="true" />
-                <dd className="font-display text-3xl font-extrabold tracking-tight text-accent-strong sm:text-4xl">
+                <div
+                  className="bg-accent-gradient mb-3 h-0.5 w-8"
+                  aria-hidden="true"
+                />
+                <dd className="text-accent-gradient font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
                   {kpi.value}
                 </dd>
                 <dt className="mt-1 text-sm font-medium">{kpi.label}</dt>
@@ -169,13 +171,31 @@ function ExperienceSection() {
                     <li key={h.slice(0, 40)} className="flex gap-2">
                       <span
                         aria-hidden="true"
-                        className="mt-1.5 h-1 w-3 shrink-0 bg-accent"
+                        className="bg-accent-gradient mt-1.5 h-1 w-3 shrink-0"
                       />
                       <span>{h}</span>
                     </li>
                   ))}
                 </ul>
               ) : null}
+              {xp.sections?.map((section) => (
+                <div key={section.title} className="mt-4 max-w-3xl">
+                  <h4 className="font-mono text-xs uppercase tracking-widest text-accent">
+                    {section.title}
+                  </h4>
+                  <ul className="mt-2 space-y-2 text-sm leading-relaxed">
+                    {section.bullets.map((b) => (
+                      <li key={b.slice(0, 40)} className="flex gap-2">
+                        <span
+                          aria-hidden="true"
+                          className="bg-accent-gradient mt-1.5 h-1 w-3 shrink-0"
+                        />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </Reveal>
           </li>
         ))}
@@ -201,15 +221,24 @@ function Projects() {
                 href={`/projets/${project.slug}`}
                 className="group grid gap-0 overflow-hidden rounded-lg border border-border bg-background transition-colors hover:border-accent md:grid-cols-5"
               >
-                <div className="relative aspect-[16/10] md:col-span-2 md:aspect-auto md:min-h-56">
-                  <Image
-                    src={project.coverImage.src}
-                    alt={project.coverImage.alt}
-                    fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
-                    className="object-cover object-top"
-                  />
-                </div>
+                {project.coverImage ? (
+                  <div className="relative aspect-[16/10] md:col-span-2 md:aspect-auto md:min-h-56">
+                    <Image
+                      src={project.coverImage.src}
+                      alt={project.coverImage.alt}
+                      fill
+                      sizes="(min-width: 768px) 40vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-accent-gradient relative flex aspect-[16/10] items-center justify-center p-6 md:col-span-2 md:aspect-auto md:min-h-56">
+                    <p className="text-center font-mono text-xs leading-relaxed text-white/90">
+                      Projet interne confidentiel
+                      <br />— pas de captures publiables —
+                    </p>
+                  </div>
+                )}
                 <div className="p-5 md:col-span-3 md:p-6">
                   <p className="font-mono text-xs uppercase tracking-wider text-muted">
                     {project.sector} · {project.year}

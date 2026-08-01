@@ -4,11 +4,6 @@
  * sans toucher au JSX.
  */
 
-export type Link = {
-  label: string;
-  href: string;
-};
-
 export type Kpi = {
   /** Valeur affichée dans la tuile, ex. "4" ou "10+" */
   value: string;
@@ -24,20 +19,22 @@ export type SkillGroup = {
   tools: string[];
 };
 
+export type ExperienceSection = {
+  title: string;
+  bullets: string[];
+};
+
 export type Experience = {
   company: string;
   role: string;
   period: string;
   location?: string;
   highlights: string[];
+  /** Sous-blocs optionnels (ex. missions clients vs développement interne) */
+  sections?: ExperienceSection[];
 };
 
-export type CaseStudySection = {
-  title: string;
-  /** Paragraphes ou puces */
-  paragraphs?: string[];
-  bullets?: string[];
-};
+export type ProjectImage = { src: string; alt: string };
 
 export type Project = {
   slug: string;
@@ -47,10 +44,10 @@ export type Project = {
   /** Accroche courte pour la carte en page d'accueil */
   summary: string;
   stack: string[];
-  /** Capture principale (visible sur la carte et l'étude de cas) */
-  coverImage: { src: string; alt: string };
+  /** Capture principale — absente pour les projets internes confidentiels */
+  coverImage?: ProjectImage;
   /** Captures additionnelles pour l'étude de cas */
-  images: { src: string; alt: string }[];
+  images: ProjectImage[];
   context: string;
   constraint: string;
   contributions: string[];
@@ -78,16 +75,13 @@ export const profile = {
   name: "Amine Bezzi",
   title: "Consultant Data & Analytics",
   subtitle: "Power BI · Alteryx · MSBI",
-  location: "Pierrelaye, France (95)",
-  availability: "Disponible à partir de septembre 2026",
-  nationality: "Nationalité française",
   yearsOfExperience: 4,
   positioning:
     "Je transforme des données complexes en leviers de décision, de l'ETL à la visualisation.",
   about: [
     "Consultant senior Data & Analytics avec 4 ans d'expérience, certifié Microsoft PL-300 (Power BI Data Analyst) et Alteryx Designer Core.",
-    "Chez KPMG Transaction Services, j'ai travaillé sur la due diligence financière de plus de 10 clients, côté acquéreur comme côté vendeur : analyses de revenus récurrents et SaaS (ARR, MRR, churn, cohortes), préparation de données sous Alteryx, modèles SSAS Tabular et dashboards Power BI.",
-    "Aujourd'hui en mission pour des directions métier (pharma, services IT), je couvre toute la chaîne : cadrage, préparation et qualité des données, modélisation sémantique, mesures DAX et design de rapports lisibles par un comité de direction.",
+    "Chez KPMG Transaction Services (Deal Advisory), j'ai travaillé sur deux fronts : les missions clients M&A — due diligence financière, analyses de revenus récurrents (ARR, MRR, churn, cohortes, roll-forward) pour plus de 10 clients — et le développement interne d'outils d'automatisation en méthode Agile sous Azure DevOps, dont le dashboard staffing & pipeline le plus sollicité par les Partners de KPMG Paris.",
+    "Aujourd'hui en mission pour des directions métier (pharma, services IT), je couvre toute la chaîne : cadrage et cahier des charges, ETL (Alteryx, KNIME, Apache Hop, Talend), qualité des données, modélisation sémantique SSAS, mesures DAX et design de dashboards lisibles par un comité de direction.",
     "Ce qui m'importe : des chiffres fiables, des modèles propres, et des rapports que les décideurs utilisent vraiment.",
   ],
   contact: {
@@ -105,7 +99,7 @@ export const profile = {
     },
     {
       value: "10+",
-      label: "deals M&A",
+      label: "clients M&A",
       detail: "buy-side & sell-side, KPMG TS",
     },
     {
@@ -114,35 +108,64 @@ export const profile = {
       detail: "PL-300 · Alteryx Core · BI",
     },
     {
-      value: "3",
+      value: "4",
       label: "études de cas",
       detail: "détaillées ci-dessous",
     },
   ] satisfies Kpi[],
   skillGroups: [
     {
-      role: "Préparation & qualité des données",
+      role: "ETL & préparation des données",
       description:
-        "Nettoyage et structuration de larges volumes de données, dispositifs de contrôle qualité en amont des modèles.",
-      tools: ["Alteryx", "KNIME", "Power Query", "SQL Server"],
+        "Traitement de bases de plusieurs millions de lignes sous Alteryx : connexions SQL Server, API REST et fichiers, protocoles d'alerte data quality, transformations. Dispositifs de contrôle qualité avec KNIME, migration de chaînes ETL Talend vers Apache Hop.",
+      tools: [
+        "Alteryx (avancé)",
+        "KNIME",
+        "Apache Hop (intermédiaire)",
+        "Talend (initiation)",
+        "Power Query",
+        "SQL Server",
+      ],
     },
     {
-      role: "Modélisation sémantique",
+      role: "Modélisation & analyse",
       description:
-        "Modèles en étoile et modèles tabulaires prêts pour l'analyse, du deal M&A au reporting de direction.",
-      tools: ["SSAS Tabular", "Tabular Editor", "SQL", "Modèle en étoile"],
+        "Modèles en étoile et modèles sémantiques SSAS Tabular maintenus sous Tabular Editor. Mesures DAX avancées : time intelligence, réalisé vs objectif, cohortes, ARR / MRR, churn, lifetime value, roll-forward, like-for-like.",
+      tools: [
+        "SSAS Tabular",
+        "Tabular Editor",
+        "DAX",
+        "SQL",
+        "Python",
+        "R",
+        "MATLAB",
+      ],
     },
     {
-      role: "Mesures & calculs",
+      role: "Restitution & design",
       description:
-        "DAX avancé : time intelligence, réalisé vs objectif, cohortes clients, ARR / MRR, churn, lifetime value, like-for-like.",
-      tools: ["DAX", "Time intelligence", "Cohortes", "KPIs SaaS"],
+        "Power BI avancé : DAX, bookmarks, drill-down, UX/UI soigné. Excel niveau M&A KPMG : calculs avancés, SOMME.SI.ENS, RECHERCHEV, TCD, connexion SSAS. Maquettage des propositions de design sous PowerPoint, Canva et Figma.",
+      tools: [
+        "Power BI (avancé)",
+        "Excel (niveau M&A KPMG)",
+        "Looker Studio (initiation)",
+        "PowerPoint",
+        "Canva",
+        "Figma",
+      ],
     },
     {
-      role: "Restitution & décision",
+      role: "Industrialisation & collaboration",
       description:
-        "Dashboards Power BI orientés comité de direction, databooks Excel dynamiques, supports M&A PowerPoint.",
-      tools: ["Power BI (avancé)", "Excel (avancé)", "PowerPoint", "UX/UI reporting"],
+        "Versionnement Git des développements BI, gestion de projet Agile sous Azure DevOps, automatisation Excel (VBA), sources SharePoint, rédaction de cahiers des charges KPI avec les équipes métiers.",
+      tools: [
+        "Git",
+        "Azure DevOps",
+        "Méthode Agile",
+        "VBA Excel",
+        "SharePoint",
+        "Cahier des charges KPI",
+      ],
     },
   ] satisfies SkillGroup[],
   experiences: [
@@ -151,7 +174,10 @@ export const profile = {
       role: "Consultant Data & BI externe (ESN)",
       period: "Juin 2026 — Sept. 2026",
       highlights: [
-        "Conception et développement de rapports Power BI destinés aux clients d'IRIS-IT : suivi 360° des activités infogérées (support, téléphonie, facturation, logistique, SLA).",
+        "Conception de dashboards Power BI destinés aux clients d'IRIS-IT : suivi 360° de leur activité, de l'état du parc au suivi des tickets de maintenance, support, téléphonie, facturation et logistique.",
+        "Rédaction du cahier des charges avec les équipes internes : besoins KPI, suivis opérationnels, taux de rafraîchissement des données.",
+        "Refonte de la chaîne ETL : migration de Talend vers Apache Hop, versionnement des développements avec Git.",
+        "Maquettes Canva / PowerPoint pour les propositions de design présentées aux responsables.",
       ],
     },
     {
@@ -159,21 +185,35 @@ export const profile = {
       role: "Consultant Data — Business Excellence",
       period: "Mars 2026 — Mai 2026",
       highlights: [
-        "Optimisation du modèle de données et mise en place d'un dispositif de contrôle qualité des données.",
-        "Conception et développement de dashboards Power BI stratégiques destinés aux revues de direction.",
+        "Mise en place d'un dispositif Data Quality autour d'une solution ETL low-code gratuite (KNIME), et formation des équipes métiers à l'outil pour contrôler la donnée en autonomie.",
+        "Création du dashboard de direction (rafraîchissement hebdomadaire) qui anime les comités de direction : activité de vente sell-in, consommation du budget marketing.",
+        "Comparaisons vs N-1, vs objectif, vs MAT et vs M-1, déclinées par pôle, gamme, jusqu'au produit.",
       ],
     },
     {
       company: "KPMG — Transaction Services",
       role: "Senior Data & Analytics Consultant",
       period: "Sept. 2022 — Mars 2026",
-      location: "Équipe Paris — Offshore",
-      highlights: [
-        "Due diligence financière : participation à des deals buy-side et sell-side pour plus de 10 clients.",
-        "Analyses approfondies des revenus récurrents & SaaS : ARR, MRR, churn, cohortes.",
-        "Préparation des données : nettoyage et structuration de larges volumes via Alteryx, intégrés ensuite dans des modèles SSAS Tabular.",
-        "Dashboards Power BI : rapports interactifs avec DAX avancé et principes UX/UI pour des visualisations claires et impactantes.",
-        "Databooks Excel : outils de reporting dynamiques transformant des données complexes en supports de décision pour les clients et équipes deal.",
+      location: "Équipe Paris — Offshore · Deal Advisory",
+      highlights: [],
+      sections: [
+        {
+          title: "Missions clients M&A",
+          bullets: [
+            "Participation à plus de 5 missions d'achat et de vente de sociétés à revenu récurrent (SaaS, télécommunications, cybersécurité) : ARR, MRR, churn, cohortes, analyses like-for-like.",
+            "Client assurance (région marseillaise) : réalisation et actualisation mensuelle, pendant 2 ans, d'un dashboard publié sur le Portail Client KPMG — ARR, MRR, cohortes, snowball vs N-1 et vs M-1, deep dive jusqu'au niveau le plus fin.",
+            "Deux missions retail : analyses PVM (prix-volume-mix), sell-in, sell-out, saisonnalités.",
+            "Préparation des données sous Alteryx (nettoyage, structuration de larges volumes) intégrées dans des modèles SSAS Tabular ; databooks Excel dynamiques pour les équipes deal.",
+          ],
+        },
+        {
+          title: "Développement interne — automatisation (Agile · Azure DevOps)",
+          bullets: [
+            "Automatisation de la chaîne de traitement des analyses récurrentes avancées (ARR, cohortes, roll-forward…) pour les missions à venir — stack : Power BI, Alteryx, SQL Server, SSAS / Tabular Editor, Azure DevOps, Excel automatisé.",
+            "Pilotage de bout en bout, avec les équipes RH et Planning, du dashboard timesheet & pipeline de KPMG Deal Advisory France : le dashboard le plus sollicité par les Partners de KPMG Paris.",
+            "Timesheet : optimisation du staffing des collaborateurs, détection des collaborateurs sans mission, appui au planning. Pipeline M&A : backlog, projets à venir, pitchs en cours, gagnés, déclinés, perdus, terminés — avec tables prêtes à exporter.",
+          ],
+        },
       ],
     },
     {
@@ -196,71 +236,48 @@ export const profile = {
       sector: "Services IT / Retail international",
       year: "2026",
       summary:
-        "Une vue unifiée pour le comité de pilotage d'une infogérance : support, téléphonie, facturation, logistique et SLA contractuels dans un seul rapport.",
-      stack: ["Power BI", "DAX", "Power Query", "SQL Server"],
+        "Un espace de pilotage 360° pour les clients d'une ESN : état du parc, tickets de maintenance, support, téléphonie, facturation, logistique et SLA — avec refonte de l'ETL de Talend vers Apache Hop.",
+      stack: [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "SQL Server",
+        "Apache Hop",
+        "Git",
+      ],
       coverImage: {
         src: "/projects/iris-overview.webp",
-        alt: "Vue d'ensemble du rapport Power BI : KPIs support, téléphonie, facturation et logistique, courbes mensuelles, points d'attention triés par sévérité et carte des sites.",
+        alt: "Vue d'ensemble du rapport : KPIs support, téléphonie, facturation et matériel & logistique avec cibles, courbes mensuelles par domaine, points d'attention triés par sévérité et carte mondiale des sites.",
       },
       images: [
         {
-          src: "/projects/iris-cover.webp",
-          alt: "Page d'accueil du rapport : espace de pilotage de la performance avec navigation Vue d'ensemble, Support, Facturation, Téléphonie, Matériel.",
+          src: "/projects/iris-commandes.webp",
+          alt: "Onglet Commandes : suivi des achats fournisseurs avec cycle de vie des commandes (commandée, expédiée, reçue, intégrée au stock), valeur totale et détail ligne à ligne.",
+        },
+        {
+          src: "/projects/iris-home.webp",
+          alt: "Page d'accueil de l'espace de pilotage avec navigation Vue d'ensemble, Support, Facturation, Téléphonie, Matériel.",
         },
       ],
       context:
-        "Une ESN assure l'infogérance d'un groupe spécialiste de la maintenance, réparation et installation hardware. Le comité de pilotage manquait d'une vue unifiée : support, téléphonie, facturation, logistique et respect des SLA contractuels.",
+        "Une ESN assure l'infogérance d'un groupe spécialiste de la maintenance, réparation et installation hardware. Les clients et le comité de pilotage manquaient d'une vue unifiée de l'activité : état du parc, tickets de maintenance, support, téléphonie, facturation, logistique et respect des SLA contractuels.",
       constraint:
-        "Consolider des sources hétérogènes — ticketing, téléphonie, ERP — dans un modèle unique, lisible en réunion de pilotage, avec des seuils contractuels (SLA) suivis en continu.",
+        "Couvrir les besoins KPI des équipes internes via un vrai cahier des charges (indicateurs, suivis, taux de rafraîchissement), consolider des sources hétérogènes, et moderniser une chaîne ETL historique sous Talend.",
       contributions: [
-        "Modèle en étoile consolidant ticketing, téléphonie et ERP via Power Query.",
-        "Mesures DAX time intelligence : comparaisons vs N-1, cibles SLA, signaux d'alerte.",
-        "Navigation par domaine métier et synthèse « points d'attention » triée par sévérité.",
-        "Design UX : page d'accueil, cartographie des sites, codes couleur par domaine.",
+        "Rédaction du cahier des charges avec les équipes internes : KPIs, suivis, taux de rafraîchissement attendus.",
+        "Modèle en étoile consolidant ticketing, téléphonie et ERP via Power Query ; mesures DAX time intelligence (vs N-1, cibles SLA, signaux d'alerte).",
+        "Refonte de l'ETL : migration de Talend vers Apache Hop, avec versionnement Git des développements.",
+        "Navigation par domaine métier, synthèse « points d'attention » triée par sévérité, suivi du cycle de vie des commandes fournisseurs.",
+        "Maquettes Canva / PowerPoint pour faire valider les propositions de design par les responsables avant développement.",
       ],
       decisions: [
-        "Un code couleur par domaine métier (support, téléphonie, facturation, matériel) pour se repérer d'un onglet à l'autre sans lire les titres.",
+        "Un cahier des charges validé avant tout développement : chaque KPI a un propriétaire, une définition et un taux de rafraîchissement attendu.",
+        "Apache Hop plutôt que Talend pour la chaîne ETL cible : open source actif, pipelines versionnables dans Git comme du code.",
         "Une synthèse « points d'attention » qui trie les écarts aux cibles par sévérité : le comité commence par ce qui dévie, pas par ce qui va bien.",
-        "Des KPIs contractuels (SLA, taux de résolution, décroché) affichés avec leur cible et leur statut, pas seulement leur valeur.",
+        "Un code couleur par domaine métier pour se repérer d'un onglet à l'autre sans lire les titres.",
       ],
       outcome:
-        "Le comité de pilotage dispose d'un point d'entrée unique : KPIs contractuels avec cibles, tendances mensuelles par domaine et alertes hiérarchisées, là où le suivi était auparavant éclaté entre plusieurs outils.",
-    },
-    {
-      slug: "deal-analytics-due-diligence",
-      name: "Deal Analytics — Due diligence M&A",
-      sector: "Finance / Transaction Services — cabinet Big Four",
-      year: "2023 — 2025",
-      summary:
-        "Objectiver la qualité du revenu d'une cible en vendor due diligence : revenu récurrent, churn, lifetime value et analyses like-for-like explorables en réunion client.",
-      stack: ["Power BI", "DAX", "Alteryx", "SQL"],
-      coverImage: {
-        src: "/projects/kpmg-report.webp",
-        alt: "Rapport Deal Analytics multi-onglets : performance des ventes par segment, répartition des commandes par catégorie et journal détaillé des transactions.",
-      },
-      images: [
-        {
-          src: "/projects/kpmg-cover.webp",
-          alt: "Page de garde du rapport Deal Analytics avec navigation Overview, Report et About us.",
-        },
-      ],
-      context:
-        "Dans le cadre d'une vendor due diligence, l'équipe Deal Advisory devait objectiver la qualité du revenu d'une cible : tendances de ventes, churn client, revenu récurrent, analyses like-for-like.",
-      constraint:
-        "Des données transactionnelles brutes à fiabiliser, un rendu conforme à la charte graphique du cabinet, et des réunions client où chaque question appelle une exploration immédiate.",
-      contributions: [
-        "Préparation des données transactionnelles : nettoyage, construction de cohortes clients.",
-        "Mesures DAX : revenu récurrent, churn, lifetime value, like-for-like.",
-        "Rapport multi-onglets conforme à la charte graphique du cabinet.",
-        "Filtres période / géographie / produit pour l'exploration en réunion client.",
-      ],
-      decisions: [
-        "Des cohortes clients construites dès la préparation des données, pour que churn et rétention se calculent sans retraitement dans le modèle.",
-        "Un onglet par question de due diligence (croissance, acquisition, churn, revenu récurrent, like-for-like) plutôt qu'un seul écran surchargé.",
-        "Des filtres période / géographie / produit toujours visibles : le rapport sert de support d'exploration en direct, pas seulement de restitution figée.",
-      ],
-      outcome:
-        "L'équipe deal explore les questions de qualité du revenu en séance — au lieu d'aller-retours d'extractions — avec des indicateurs ARR, churn et LTV calculés sur des données nettoyées et traçables.",
+        "Les clients d'IRIS-IT disposent d'un espace de pilotage unique — KPIs contractuels avec cibles, tendances par domaine, alertes hiérarchisées, suivi des commandes — et l'équipe interne d'une chaîne ETL modernisée et versionnée.",
     },
     {
       slug: "pilotage-sell-in-budget-marketing",
@@ -268,35 +285,109 @@ export const profile = {
       sector: "Industrie pharmaceutique",
       year: "2026",
       summary:
-        "Remplacer des extractions Excel hebdomadaires par un modèle sémantique consolidé : CA, volumes, objectifs et budget marketing par gamme, pôle et client.",
+        "Un dispositif Data Quality (KNIME) et un dashboard de direction à rafraîchissement hebdomadaire : sell-in et budget marketing comparés vs N-1, objectif, MAT et M-1, du pôle jusqu'au produit.",
       stack: ["Power BI", "DAX", "KNIME", "SSAS Tabular"],
       coverImage: {
         src: "/projects/magpharm-overview.webp",
-        alt: "Vue Overview du tableau de bord : chiffre d'affaires, volumes, budget marketing et pourcentage consommé, réalisé vs objectif par gamme et top produits.",
+        alt: "Vue Overview : chiffre d'affaires, volume, budget marketing et pourcentage de consommation avec jauges vs objectif et vs N-1, CA par mois, réalisé vs objectif par gamme et top produits.",
       },
       images: [
         {
-          src: "/projects/magpharm-cover.webp",
-          alt: "Page d'accueil du tableau de bord Business Excellence avec menu de navigation Overview, Focus Sell-in, Réalisé vs Objectif et Budget Marketing.",
+          src: "/projects/magpharm-sellin.webp",
+          alt: "Vue Focus Sell-in : contribution par gamme, performance vs N-1 et objectif, évolution mensuelle par gamme et détail par produit (objectif, réalisé, R/O, stock, couverture en jours).",
+        },
+        {
+          src: "/projects/magpharm-marketing.webp",
+          alt: "Vue Budget Marketing : consommation full year, YTD et mensuelle vs budget, budget par gamme avec pourcentage de consommation, et détail des actions marketing réalisées mois par mois.",
+        },
+        {
+          src: "/projects/magpharm-home.webp",
+          alt: "Page d'accueil du tableau de bord Business Excellence avec menu de navigation et date de mise à jour hebdomadaire.",
         },
       ],
       context:
-        "La direction commerciale d'un laboratoire pharmaceutique pilotait ventes sell-in et budget marketing sur des extractions Excel hebdomadaires, sans vision consolidée par gamme, pôle et client.",
+        "La direction commerciale d'un laboratoire pharmaceutique pilotait ventes sell-in et budget marketing sur des extractions Excel hebdomadaires, sans vision consolidée par pôle, gamme et produit — et sans dispositif de contrôle de la qualité des données en amont.",
       constraint:
-        "Passer d'exports hebdomadaires manuels à un modèle sémantique unique alimentant les revues de direction, avec un suivi budgétaire fiable par gamme.",
+        "Fiabiliser la donnée avant de la montrer : mettre en place un contrôle qualité outillé et transférable aux équipes métiers, puis un dashboard de direction rafraîchi chaque semaine pour animer les comités de direction.",
       contributions: [
+        "Dispositif Data Quality construit sur KNIME (ETL low-code gratuit) : contrôles automatisés de la donnée entrante.",
+        "Formation des équipes métiers à KNIME pour qu'elles contrôlent la donnée en autonomie.",
         "Modèle sémantique SSAS Tabular : CA, volumes, objectifs, budget marketing.",
-        "Mesures DAX réalisé vs objectif, contribution, consommation budgétaire.",
-        "Volet de filtres sur mesure : produit, client, périmètre, division.",
-        "Suivi du budget par gamme et détail des actions marketing réalisées.",
+        "Mesures DAX de comparaison : vs N-1, vs objectif, vs MAT, vs M-1 — déclinées par pôle, gamme, jusqu'au produit.",
+        "Vues dédiées : Overview, Focus Sell-in, Réalisé vs Objectif, Budget Marketing avec détail des actions réalisées.",
       ],
       decisions: [
-        "Un modèle sémantique SSAS Tabular central plutôt qu'un empilement de fichiers : une seule définition du CA, des objectifs et du budget pour tous les rapports.",
-        "Des mesures « réalisé vs objectif » avec contribution par gamme, pour lire en un écran où se joue l'atteinte de l'objectif.",
-        "Un volet de filtres sur mesure (produit, client, périmètre, division) calqué sur la façon dont la direction commerciale raisonne.",
+        "KNIME retenu comme ETL : gratuit et low-code, donc appropriable par les équipes métiers après formation — la qualité de données ne dépend plus d'un prestataire.",
+        "Un modèle sémantique SSAS Tabular central : une seule définition du CA, des objectifs et du budget pour toutes les vues.",
+        "Des comparaisons systématiques (N-1, objectif, MAT, M-1) plutôt que des valeurs brutes : un chiffre ne dit rien sans son référentiel.",
+        "Un volet de filtres calqué sur l'organisation commerciale : action, pôle, gamme, team, produit.",
       ],
       outcome:
-        "La direction commerciale suit CA, volumes et consommation budgétaire dans un espace unique mis à jour chaque semaine, décliné par gamme, pôle et client — là où chaque revue exigeait auparavant de reconstruire des extractions Excel.",
+        "La direction anime ses comités sur un espace unique rafraîchi chaque semaine — sell-in, budget marketing et actions réalisées, du pôle au produit — alimenté par une donnée contrôlée par les équipes métiers elles-mêmes.",
+    },
+    {
+      slug: "deal-analytics-due-diligence",
+      name: "Deal Analytics — Due diligence M&A",
+      sector: "Finance / Transaction Services — cabinet Big Four",
+      year: "2023 — 2025",
+      summary:
+        "Objectiver la qualité du revenu de cibles à revenu récurrent (SaaS, télécoms, cybersécurité) : ARR, MRR, churn, cohortes, snowball et like-for-like explorables en réunion client.",
+      stack: ["Power BI", "DAX", "Alteryx", "SQL", "SSAS Tabular"],
+      coverImage: {
+        src: "/projects/kpmg-report.webp",
+        alt: "Rapport Deal Analytics, onglet Composition : performance des ventes par segment, répartition des commandes par catégorie et journal détaillé des transactions avec filtres par région.",
+      },
+      images: [
+        {
+          src: "/projects/kpmg-cover.webp",
+          alt: "Page de garde du rapport Deal Analytics (Projet Harvest) avec navigation Overview, Report et About us.",
+        },
+      ],
+      context:
+        "Au sein de l'équipe Deal Advisory, les missions de due diligence devaient objectiver la qualité du revenu de cibles : tendances de ventes, churn client, revenu récurrent, analyses like-for-like. Plus de 5 missions d'achat et de vente de sociétés à revenu récurrent (SaaS, télécommunications, cybersécurité), deux missions retail (PVM, sell-in, sell-out, saisonnalités), et un client assurance suivi en continu.",
+      constraint:
+        "Des données transactionnelles brutes à fiabiliser, un rendu conforme à la charte graphique du cabinet, et des réunions client où chaque question appelle une exploration immédiate.",
+      contributions: [
+        "Préparation des données transactionnelles sous Alteryx : nettoyage, construction de cohortes clients.",
+        "Mesures DAX : revenu récurrent (ARR, MRR), churn, lifetime value, snowball vs N-1 et vs M-1, like-for-like.",
+        "Client assurance (région marseillaise) : dashboard actualisé chaque mois pendant 2 ans, publié sur le Portail Client KPMG, avec deep dive jusqu'au niveau le plus fin.",
+        "Rapport multi-onglets conforme à la charte graphique du cabinet, filtres période / géographie / produit pour l'exploration en réunion.",
+      ],
+      decisions: [
+        "Des cohortes clients construites dès la préparation des données, pour que churn et rétention se calculent sans retraitement dans le modèle.",
+        "Un onglet par question de due diligence (croissance, acquisition, churn, revenu récurrent, like-for-like) plutôt qu'un seul écran surchargé.",
+        "Publication sur le Portail Client KPMG pour le suivi récurrent : le client consulte, l'équipe actualise — pas d'envois de fichiers.",
+      ],
+      outcome:
+        "Les équipes deal explorent les questions de qualité du revenu en séance — au lieu d'allers-retours d'extractions — avec des indicateurs ARR, churn, LTV et snowball calculés sur des données nettoyées et traçables.",
+    },
+    {
+      slug: "staffing-pipeline-deal-advisory",
+      name: "Timesheet & Pipeline M&A — Deal Advisory France",
+      sector: "Projet interne — cabinet Big Four",
+      year: "2022 — 2026",
+      summary:
+        "Mené de bout en bout avec les équipes RH et Planning : la timesheet de tout KPMG Deal Advisory France et le pipeline des missions M&A. Le dashboard le plus sollicité par les Partners de KPMG Paris.",
+      stack: ["Power BI", "DAX", "Alteryx", "VBA Excel", "SharePoint"],
+      images: [],
+      context:
+        "Les Partners et l'équipe Planning de KPMG Deal Advisory France manquaient d'une vue consolidée sur deux questions quotidiennes : qui est staffé sur quoi (timesheet de tous les collaborateurs), et où en est le pipeline des missions M&A.",
+      constraint:
+        "Un projet interne mené de bout en bout — cadrage avec RH et Planning, sources SharePoint hétérogènes, données de staffing sensibles — pour un public exigeant : les Partners de KPMG Paris. Dashboard interne confidentiel : pas de captures publiables.",
+      contributions: [
+        "Pilotage du projet de bout en bout avec les équipes RH et Planning : cadrage, développement, itérations.",
+        "Volet timesheet : suivi du staffing de tous les collaborateurs de Deal Advisory France, détection des collaborateurs sans mission, appui au planning.",
+        "Volet pipeline M&A : backlog, projets à venir, pitchs en cours, gagnés, déclinés, perdus à un concurrent, terminés — avec le détail par mission.",
+        "Tables détaillées prêtes à être exportées pour les revues de staffing et de pipeline.",
+        "Chaîne d'alimentation : sources SharePoint, préparation Alteryx, automatisations VBA Excel.",
+      ],
+      decisions: [
+        "Deux volets dans un seul dashboard (timesheet + pipeline) : le staffing ne s'optimise qu'en regard des missions qui arrivent.",
+        "Des statuts de pipeline explicites (backlog, à venir, pitch en cours, gagné, décliné, perdu, terminé) partagés par tous — fin des définitions divergentes entre équipes.",
+        "Des tables exportables intégrées au rapport : les revues de staffing repartent avec leurs extractions, sans demande ad hoc.",
+      ],
+      outcome:
+        "Le dashboard le plus sollicité par les Partners de KPMG Paris : optimisation du staffing des collaborateurs, détection immédiate des collaborateurs sans mission, planning outillé, et un état du pipeline M&A (en cours, gagnés, déclinés…) lisible en une réunion.",
     },
   ] satisfies Project[],
   education: [

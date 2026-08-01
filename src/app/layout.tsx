@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     default: `${profile.name} — ${profile.title}`,
     template: `%s — ${profile.name}`,
   },
-  description: `${profile.positioning} ${profile.subtitle}. ${profile.availability}.`,
+  description: `${profile.positioning} ${profile.subtitle}. ${profile.yearsOfExperience} ans d'expérience en conseil data.`,
   keywords: [
     "Power BI",
     "DAX",
@@ -66,11 +66,6 @@ const personJsonLd = {
   email: `mailto:${profile.contact.email}`,
   url: siteUrl,
   sameAs: [profile.contact.linkedin],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Pierrelaye",
-    addressCountry: "FR",
-  },
   knowsLanguage: profile.languages.map((l) => l.language),
   hasCredential: profile.certifications.map((c) => ({
     "@type": "EducationalOccupationalCredential",
@@ -80,8 +75,8 @@ const personJsonLd = {
 };
 
 // Applique le thème avant le premier rendu pour éviter le flash :
-// préférence stockée, sinon préférence système.
-const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+// préférence stockée, sinon mode sombre par défaut (thème principal du site).
+const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":true;document.documentElement.classList.toggle("dark",d);}catch(e){document.documentElement.classList.add("dark");}})();`;
 
 export default function RootLayout({
   children,

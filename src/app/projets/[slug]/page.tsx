@@ -66,20 +66,28 @@ export default async function ProjectPage({ params }: PageProps) {
         </ul>
       </header>
 
-      <figure className="mt-8 overflow-hidden rounded-lg border border-border bg-surface">
-        <Image
-          src={project.coverImage.src}
-          alt={project.coverImage.alt}
-          width={1600}
-          height={1043}
-          priority
-          sizes="(min-width: 896px) 896px, 100vw"
-          className="w-full"
-        />
-        <figcaption className="border-t border-border px-4 py-2 font-mono text-xs text-muted">
-          {project.coverImage.alt}
-        </figcaption>
-      </figure>
+      {project.coverImage ? (
+        <figure className="mt-8 overflow-hidden rounded-lg border border-border bg-surface">
+          <Image
+            src={project.coverImage.src}
+            alt={project.coverImage.alt}
+            width={1600}
+            height={1043}
+            priority
+            sizes="(min-width: 896px) 896px, 100vw"
+            className="w-full"
+          />
+          <figcaption className="border-t border-border px-4 py-2 font-mono text-xs text-muted">
+            {project.coverImage.alt}
+          </figcaption>
+        </figure>
+      ) : (
+        <div className="bg-accent-gradient mt-8 flex items-center justify-center rounded-lg p-10">
+          <p className="text-center font-mono text-sm leading-relaxed text-white/90">
+            Projet interne confidentiel — pas de captures publiables.
+          </p>
+        </div>
+      )}
 
       <div className="mt-10 space-y-10">
         <CaseSection tab="contexte" title="Contexte">
