@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Amine Bezzi
 
-## Getting Started
+CV et portfolio en un seul site : [Next.js](https://nextjs.org) (App Router) + TypeScript strict + Tailwind CSS 4. Une page principale avec ancres, plus une étude de cas détaillée par projet sous `/projets/[slug]`.
 
-First, run the development server:
+## Lancer en local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Vérifications avant de pousser :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint       # ESLint
+npm run build      # build de production (doit passer sans erreur)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Où éditer le contenu
 
-## Learn More
+**Tout le texte du site vit dans un seul fichier : [`src/content/profile.ts`](src/content/profile.ts).**
+Coordonnées, à propos, compétences, expériences, projets, formation, certifications, langues — mettre à jour ce fichier suffit, sans toucher au JSX.
 
-To learn more about Next.js, take a look at the following resources:
+Autres emplacements utiles :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Quoi | Où |
+| --- | --- |
+| CV téléchargeable | `public/cv.pdf` (remplacer le fichier, garder le nom) |
+| Captures des dashboards | `public/projects/*.webp` (référencées dans `profile.ts`) |
+| Couleurs & polices | `src/app/globals.css` (variables) et `src/app/layout.tsx` (next/font) |
+| Metadata SEO / JSON-LD | `src/app/layout.tsx` |
+| URL publique du site | variable `NEXT_PUBLIC_SITE_URL` (voir `.env.example`) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Direction artistique (résumé)
 
-## Deploy on Vercel
+- **Palette** : encre `#12161C`, panneau `#1A212B`, grille `#F2F4F7`, ambre mesure `#B97B14` / `#E0A33E`, bleu rapport `#33608C`, vert cible `#2E7D5B`.
+- **Typographie** : Archivo (display), Inter (texte), IBM Plex Mono (données, labels, métadonnées).
+- **Élément signature** : le site se lit comme un rapport Power BI — bandeau de KPIs chiffrés en hero, navigation façon slicers, libellés d'onglets en monospace.
+- **Animation** : une seule orchestration (révélation au scroll), `prefers-reduced-motion` respecté.
+- **Thèmes** : sombre et clair, bascule dans l'en-tête, préférence système respectée par défaut.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Formulaire de contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Actuellement : le formulaire ouvre le client mail du visiteur avec sujet et message pré-remplis (`mailto:`, aucun backend). Deux options pour un vrai envoi :
+
+1. **Server Action + service d'envoi** (ex. [Resend](https://resend.com), 100 mails/jour gratuits) : une action serveur dans `src/app/actions.ts`, clé API dans `RESEND_API_KEY` (variable d'environnement, jamais en dur).
+2. **Service de formulaire tiers** (ex. [Formspree](https://formspree.io), 50 soumissions/mois gratuites) : remplacer le `onSubmit` de `src/components/ContactForm.tsx` par un `action` vers l'endpoint Formspree — zéro code serveur.
+
+## Déployer sur Vercel
+
+1. Pousser ce dépôt sur GitHub (déjà fait si vous lisez ceci sur GitHub).
+2. Sur [vercel.com](https://vercel.com) : **Add New → Project → Import**, choisir ce dépôt.
+3. Build settings : rien à changer, Vercel détecte Next.js automatiquement.
+4. (Optionnel) Ajouter la variable `NEXT_PUBLIC_SITE_URL` avec l'URL finale du site (Settings → Environment Variables), puis redéployer — elle alimente metadata, sitemap et JSON-LD.
+5. **Deploy**. Chaque `git push` sur la branche de production redéploie automatiquement.
+6. Domaine personnalisé : **Settings → Domains**, ajouter par ex. `amine-bezzi.dev` et suivre les instructions DNS.
+
+Le plan Hobby de Vercel (gratuit, usage personnel) suffit largement pour ce site.
