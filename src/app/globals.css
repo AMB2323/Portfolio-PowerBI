@@ -89,6 +89,23 @@ body {
   color: transparent;
 }
 
+/* Portrait fondu dans la page : les bords se dissolvent, la photo n'a pas de
+   cadre — son fond devient celui du site. */
+.portrait-blend {
+  -webkit-mask-image: radial-gradient(
+    120% 100% at 50% 36%,
+    #000 40%,
+    rgba(0, 0, 0, 0.72) 64%,
+    transparent 90%
+  );
+  mask-image: radial-gradient(
+    120% 100% at 50% 36%,
+    #000 40%,
+    rgba(0, 0, 0, 0.72) 64%,
+    transparent 90%
+  );
+}
+
 /* Révélation au scroll — seule orchestration animée du site */
 .reveal {
   opacity: 0;

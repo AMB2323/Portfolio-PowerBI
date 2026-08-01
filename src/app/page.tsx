@@ -26,33 +26,59 @@ function Hero() {
       className="border-b border-border bg-surface"
     >
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-        <p className="mb-4 font-mono text-xs text-muted">
-          <span className="text-accent">●</span> {profile.subtitle}
-        </p>
-        <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
-          {profile.name}
-        </h1>
-        <p className="mt-3 font-display text-xl font-semibold text-muted sm:text-2xl">
-          {profile.title} — {profile.subtitle}
-        </p>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
-          {profile.positioning}
-        </p>
+        <div className="flex flex-col-reverse items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <p className="mb-4 font-mono text-xs text-muted">
+              <span className="text-accent">●</span> {profile.subtitle}
+            </p>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
+              {profile.name}
+            </h1>
+            <p className="mt-3 font-display text-xl font-semibold text-muted sm:text-2xl">
+              {profile.title} — {profile.subtitle}
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
+              {profile.positioning}
+            </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="#projets"
-            className="bg-accent-gradient rounded-md px-5 py-2.5 font-mono text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Voir les projets
-          </Link>
-          <a
-            href={profile.contact.cvPath}
-            download="CV_Amine_Bezzi.pdf"
-            className="rounded-md border border-border bg-background px-5 py-2.5 font-mono text-sm font-semibold transition-colors hover:border-accent"
-          >
-            Télécharger le CV (PDF)
-          </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="#projets"
+                className="bg-accent-gradient rounded-md px-5 py-2.5 font-mono text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Voir les projets
+              </Link>
+              <a
+                href={profile.contact.cvPath}
+                download="CV_Amine_Bezzi.pdf"
+                className="rounded-md border border-border bg-background px-5 py-2.5 font-mono text-sm font-semibold transition-colors hover:border-accent"
+              >
+                Télécharger le CV (PDF)
+              </a>
+            </div>
+          </div>
+
+          {/* Portrait fondu dans la page : halo violet diffus, bords dissous,
+              anneau d'accent partiel — pas de cadre photo. */}
+          <div className="relative mx-auto w-52 shrink-0 sm:w-60 lg:mx-0 lg:w-72">
+            <div
+              aria-hidden="true"
+              className="bg-accent-gradient absolute inset-2 rounded-full opacity-25 blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-6 bottom-2 top-6 rounded-full border border-accent/25"
+            />
+            <Image
+              src="/portrait.webp"
+              alt={`Portrait d'${profile.name}`}
+              width={800}
+              height={1000}
+              priority
+              sizes="(min-width: 1024px) 18rem, 15rem"
+              className="portrait-blend relative aspect-[4/5] w-full object-cover object-top"
+            />
+          </div>
         </div>
 
         {/* Élément signature : bandeau de KPIs lu comme la première ligne
