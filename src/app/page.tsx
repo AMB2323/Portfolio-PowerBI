@@ -1,65 +1,370 @@
 import Image from "next/image";
+import Link from "next/link";
+import { profile } from "@/content/profile";
+import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
+import { ContactForm } from "@/components/ContactForm";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main>
+      <Hero />
+      <About />
+      <Skills />
+      <ExperienceSection />
+      <Projects />
+      <EducationSection />
+      <Contact />
+    </main>
+  );
+}
+
+function Hero() {
+  return (
+    <section
+      aria-label="Introduction"
+      className="border-b border-border bg-surface"
+    >
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+        <p className="mb-4 font-mono text-xs text-muted">
+          <span className="text-accent">●</span> {profile.availability} ·{" "}
+          {profile.location}
+        </p>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
+          {profile.name}
+        </h1>
+        <p className="mt-3 font-display text-xl font-semibold text-muted sm:text-2xl">
+          {profile.title} — {profile.subtitle}
+        </p>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
+          {profile.positioning}
+        </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="#projets"
+            className="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-semibold text-background transition-opacity hover:opacity-90"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Voir les projets
+          </Link>
+          <a
+            href={profile.contact.cvPath}
+            download="CV_Amine_Bezzi.pdf"
+            className="rounded-md border border-border bg-background px-5 py-2.5 font-mono text-sm font-semibold transition-colors hover:border-accent"
+          >
+            Télécharger le CV (PDF)
+          </a>
+        </div>
+
+        {/* Élément signature : bandeau de KPIs lu comme la première ligne
+            d'un rapport Power BI — chiffres réels du parcours. */}
+        <dl className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {profile.kpis.map((kpi, i) => (
+            <Reveal key={kpi.label} delay={i * 90}>
+              <div className="rounded-lg border border-border bg-background p-4">
+                <div className="mb-3 h-0.5 w-8 bg-accent" aria-hidden="true" />
+                <dd className="font-display text-3xl font-extrabold tracking-tight text-accent-strong sm:text-4xl">
+                  {kpi.value}
+                </dd>
+                <dt className="mt-1 text-sm font-medium">{kpi.label}</dt>
+                <p className="mt-1 font-mono text-xs text-muted">
+                  {kpi.detail}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="a-propos" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <Reveal>
+        <SectionHeading tab="a_propos" title="À propos" />
+        <div className="max-w-3xl space-y-4 text-base leading-relaxed">
+          {profile.about.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function Skills() {
+  return (
+    <section
+      id="competences"
+      className="border-y border-border bg-surface py-16"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <Reveal>
+          <SectionHeading
+            tab="competences"
+            title="Compétences, par rôle dans la chaîne data"
+          />
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {profile.skillGroups.map((group, i) => (
+            <Reveal key={group.role} delay={i * 70}>
+              <article className="h-full rounded-lg border border-border bg-background p-5">
+                <h3 className="font-display text-lg font-bold">
+                  {group.role}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {group.description}
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {group.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded border border-border bg-surface px-2 py-1 font-mono text-xs"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section id="experience" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <Reveal>
+        <SectionHeading tab="experience" title="Expérience" />
+      </Reveal>
+      <ol className="space-y-0">
+        {profile.experiences.map((xp, i) => (
+          <li
+            key={`${xp.company}-${xp.period}`}
+            className="relative border-l border-border pb-8 pl-6 last:pb-0"
+          >
+            <span
+              aria-hidden="true"
+              className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accent bg-background"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <Reveal delay={i * 60}>
+              <p className="font-mono text-xs text-muted">{xp.period}</p>
+              <h3 className="mt-1 font-display text-lg font-bold">
+                {xp.role}{" "}
+                <span className="font-semibold text-muted">— {xp.company}</span>
+              </h3>
+              {xp.location ? (
+                <p className="mt-0.5 font-mono text-xs text-muted">
+                  {xp.location}
+                </p>
+              ) : null}
+              {xp.highlights.length > 0 ? (
+                <ul className="mt-3 max-w-3xl space-y-2 text-sm leading-relaxed">
+                  {xp.highlights.map((h) => (
+                    <li key={h.slice(0, 40)} className="flex gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="mt-1.5 h-1 w-3 shrink-0 bg-accent"
+                      />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </Reveal>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function Projects() {
+  return (
+    <section id="projets" className="border-y border-border bg-surface py-16">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <Reveal>
+          <SectionHeading
+            tab="projets"
+            title="Études de cas — dashboards livrés"
+          />
+        </Reveal>
+        <div className="space-y-6">
+          {profile.projects.map((project, i) => (
+            <Reveal key={project.slug} delay={i * 80}>
+              <Link
+                href={`/projets/${project.slug}`}
+                className="group grid gap-0 overflow-hidden rounded-lg border border-border bg-background transition-colors hover:border-accent md:grid-cols-5"
+              >
+                <div className="relative aspect-[16/10] md:col-span-2 md:aspect-auto md:min-h-56">
+                  <Image
+                    src={project.coverImage.src}
+                    alt={project.coverImage.alt}
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-5 md:col-span-3 md:p-6">
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted">
+                    {project.sector} · {project.year}
+                  </p>
+                  <h3 className="mt-2 font-display text-xl font-bold group-hover:text-accent-strong">
+                    {project.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {project.summary}
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded border border-border bg-surface px-2 py-1 font-mono text-xs"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 font-mono text-xs text-accent-strong">
+                    Lire l&apos;étude de cas →
+                  </p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
+  );
+}
+
+function EducationSection() {
+  return (
+    <section id="formation" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <Reveal>
+        <SectionHeading tab="formation" title="Formation & certifications" />
+      </Reveal>
+      <div className="grid gap-8 md:grid-cols-3">
+        <Reveal>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-widest text-muted">
+              Formation
+            </h3>
+            <ul className="mt-4 space-y-4">
+              {profile.education.map((ed) => (
+                <li key={ed.degree}>
+                  <p className="font-semibold">{ed.degree}</p>
+                  <p className="font-mono text-xs text-muted">
+                    {ed.school} · {ed.period}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+        <Reveal delay={70}>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-widest text-muted">
+              Certifications
+            </h3>
+            <ul className="mt-4 space-y-4">
+              {profile.certifications.map((cert) => (
+                <li key={cert.name}>
+                  <p className="font-semibold">{cert.name}</p>
+                  <p className="font-mono text-xs text-muted">{cert.issuer}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+        <Reveal delay={140}>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-widest text-muted">
+              Langues
+            </h3>
+            <ul className="mt-4 space-y-4">
+              {profile.languages.map((lang) => (
+                <li key={lang.language}>
+                  <p className="font-semibold">{lang.language}</p>
+                  <p className="font-mono text-xs text-muted">{lang.level}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="border-t border-border bg-surface py-16">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <Reveal>
+          <SectionHeading tab="contact" title="Travaillons ensemble" />
+        </Reveal>
+        <div className="grid gap-10 md:grid-cols-2">
+          <Reveal>
+            <div className="space-y-6">
+              <p className="max-w-md text-base leading-relaxed">
+                Disponible pour des missions Power BI et Data Analytics :
+                cadrage, modélisation, industrialisation du reporting et design
+                de dashboards de direction.
+              </p>
+              <dl className="space-y-4 text-sm">
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-widest text-muted">
+                    Email
+                  </dt>
+                  <dd className="mt-1">
+                    <a
+                      href={`mailto:${profile.contact.email}`}
+                      className="font-semibold text-report-blue hover:underline"
+                    >
+                      {profile.contact.email}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-widest text-muted">
+                    Téléphone
+                  </dt>
+                  <dd className="mt-1 font-semibold">
+                    {profile.contact.phoneFr} ·{" "}
+                    <span className="font-normal text-muted">
+                      {profile.contact.phoneWhatsApp} (WhatsApp)
+                    </span>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-widest text-muted">
+                    LinkedIn
+                  </dt>
+                  <dd className="mt-1">
+                    <a
+                      href={profile.contact.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-report-blue hover:underline"
+                    >
+                      linkedin.com/in/amine-bezzi
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <ContactForm />
+          </Reveal>
+        </div>
+      </div>
+    </section>
   );
 }
