@@ -74,7 +74,7 @@ export type LanguageSkill = {
 export const profile = {
   name: "Amine Bezzi",
   title: "Consultant Data & Analytics",
-  subtitle: "Power BI · Alteryx · MSBI",
+  subtitle: "M&A · Power BI · Alteryx",
   yearsOfExperience: 4,
   positioning:
     "Je transforme des données complexes en leviers de décision, de l'ETL à la visualisation.",
@@ -174,10 +174,9 @@ export const profile = {
       role: "Consultant Data & BI externe (ESN)",
       period: "Juin 2026 — Sept. 2026",
       highlights: [
-        "Conception de dashboards Power BI destinés aux clients d'IRIS-IT : suivi 360° de leur activité, de l'état du parc au suivi des tickets de maintenance, support, téléphonie, facturation et logistique.",
+        "Conception de dashboards Power BI destinés aux clients d'IRIS-IT : suivi 360° de leur activité, de l'état du parc au suivi des tickets de maintenance, support, téléphonie, facturation et logistique. Maquettes Canva / PowerPoint validées par les responsables avant développement.",
         "Rédaction du cahier des charges avec les équipes internes : besoins KPI, suivis opérationnels, taux de rafraîchissement des données.",
         "Refonte de la chaîne ETL : migration de Talend vers Apache Hop, versionnement des développements avec Git.",
-        "Maquettes Canva / PowerPoint pour les propositions de design présentées aux responsables.",
       ],
     },
     {
@@ -215,18 +214,6 @@ export const profile = {
           ],
         },
       ],
-    },
-    {
-      company: "Jumia",
-      role: "Assistant commercial",
-      period: "Mai 2022 — Juil. 2022",
-      highlights: [],
-    },
-    {
-      company: "BDL — Banque de Développement Local",
-      role: "Stagiaire",
-      period: "Fév. 2022 — Mai 2022",
-      highlights: [],
     },
   ] satisfies Experience[],
   projects: [
@@ -408,9 +395,9 @@ export const profile = {
     { name: "Business Intelligence", issuer: "GOMYCODE" },
   ] satisfies Certification[],
   languages: [
-    { language: "Français", level: "Courant (C1)" },
+    { language: "Français", level: "Courant" },
     { language: "Arabe", level: "Langue maternelle" },
-    { language: "Anglais", level: "Professionnel (B2)" },
+    { language: "Anglais", level: "Professionnel" },
   ] satisfies LanguageSkill[],
 } as const;
 

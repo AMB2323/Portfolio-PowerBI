@@ -27,7 +27,8 @@ Après toute modification, vérifier :
 pdfinfo public/cv.pdf | grep Pages   # doit afficher : Pages: 1
 ```
 
-## À mettre à jour
+## Cohérence avec le site
 
-L'URL du portfolio apparaît dans l'en-tête (`portfolio-powerbi.vercel.app`).
-La remplacer par l'URL Vercel réelle une fois le site déployé.
+L'en-tête renvoie vers `portfolio-amine-bezzi.vercel.app`. Le titre, les langues
+et la liste des expériences doivent rester alignés sur `src/content/profile.ts` :
+un recruteur lit souvent les deux.

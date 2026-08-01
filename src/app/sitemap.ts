@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { profile } from "@/content/profile";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-powerbi.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-amine-bezzi.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
