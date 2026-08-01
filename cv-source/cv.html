@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CV Amine Bezzi</title>
+<style>
+  @page { size: A4; margin: 9mm 12mm 8mm 12mm; }
+
+  :root {
+    --blue: #1f4e79;
+    --blue-light: #2e74b5;
+    --grey: #595959;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: Carlito, Calibri, "DejaVu Sans", sans-serif;
+    font-size: 8.7pt;
+    line-height: 1.29;
+    color: #000;
+  }
+
+  /* ---------- En-tête ---------- */
+  .name {
+    text-align: center;
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: .4px;
+    margin: 0;
+  }
+  .tagline {
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 700;
+    margin: 1.5mm 0 1.8mm;
+  }
+  .contact {
+    text-align: center;
+    font-size: 7.6pt;
+    margin: 0 0 .8mm;
+  }
+  .portfolio {
+    text-align: center;
+    font-size: 7.8pt;
+    font-weight: 700;
+    margin: .4mm 0 0;
+  }
+  a { color: var(--blue-light); text-decoration: none; }
+
+  /* ---------- Sections ---------- */
+  h2 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: .3px;
+    margin: 2.6mm 0 1.2mm;
+    padding-bottom: .6mm;
+    border-bottom: 1.1pt solid var(--blue);
+  }
+
+  p { margin: 0 0 1mm; }
+
+  /* ---------- Expériences ---------- */
+  .job {
+    margin: 1.8mm 0 .6mm;
+    font-size: 8.8pt;
+  }
+  .job .company { font-weight: 700; }
+  .job .role { font-weight: 700; color: var(--blue-light); }
+  .job .dates { font-style: italic; color: var(--grey); }
+  .job .extra { font-style: italic; color: var(--grey); font-size: 7.6pt; }
+  .sep { color: var(--grey); }
+
+  .subhead {
+    font-size: 7.8pt;
+    font-weight: 700;
+    color: var(--blue-light);
+    margin: 1.1mm 0 .5mm 3mm;
+  }
+
+  /* Précision sous un intitulé de poste (entité, localisation d'équipe) */
+  .job-caption {
+    font-size: 7.6pt;
+    font-style: italic;
+    color: var(--grey);
+    margin: .2mm 0 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 4.6mm;
+    list-style: none;
+  }
+  li {
+    position: relative;
+    margin-bottom: .7mm;
+    padding-left: 2.6mm;
+  }
+  li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    top: -0.2mm;
+    font-size: 5.4pt;
+    color: var(--blue-light);
+  }
+  ul.tight li { margin-bottom: .55mm; }
+
+  b { font-weight: 700; }
+
+  /* ---------- Lignes courtes (Jumia / BDL, formation) ---------- */
+  .inline-jobs {
+    display: flex;
+    justify-content: space-between;
+    gap: 5mm;
+    margin-top: 1.7mm;
+    font-size: 8.1pt;
+    white-space: nowrap;
+  }
+
+  .edu { margin-bottom: .7mm; }
+  .edu .school { color: var(--grey); }
+
+  /* ---------- Compétences ---------- */
+  .skill { margin-bottom: .9mm; }
+  .skill .label { font-weight: 700; color: var(--blue-light); }
+
+  /* ---------- Langues ---------- */
+  .langs { text-align: center; margin-top: .6mm; }
+  .langs b { color: var(--blue-light); }
+  .langs .gap { display: inline-block; width: 6mm; }
+</style>
+</head>
+<body>
+
+<h1 class="name">AMINE BEZZI</h1>
+<div class="tagline">Data &amp; Analytics&nbsp; |&nbsp; Power BI&nbsp; |&nbsp; Alteryx&nbsp; |&nbsp; MSBI</div>
+
+<div class="contact">
+  aminebezzi@outlook.com &nbsp;|&nbsp; +33 7 65 82 69 21 &nbsp;|&nbsp; +213 7 78 67 79 75 (WhatsApp) &nbsp;|&nbsp;
+  <a href="https://linkedin.com/in/amine-bezzi">linkedin.com/in/amine-bezzi</a>
+</div>
+<div class="contact">
+  95480 Pierrelaye, France &nbsp;|&nbsp; Disponible à partir de septembre 2026 &nbsp;|&nbsp; Nationalité française
+</div>
+<div class="portfolio">
+  Portfolio — études de cas détaillées&nbsp;:
+  <a href="https://portfolio-powerbi.vercel.app">portfolio-powerbi.vercel.app</a>
+</div>
+
+<h2>PROFIL</h2>
+<p>
+  <b>Senior Consultant Data &amp; Analytics (4 ans)</b> – Certifié Microsoft PL-300 (Power BI Data Analyst)
+  &amp; Alteryx Designer Core. De la due diligence M&amp;A chez KPMG Transaction Services aux dashboards de
+  pilotage pour comités de direction : je transforme des données complexes en leviers de décision, de l'ETL
+  à la visualisation.
+</p>
+
+<h2>EXPÉRIENCES PROFESSIONNELLES</h2>
+
+<div class="job">
+  <span class="company">IRIS-IT France</span><span class="sep"> | </span><span class="role">Consultant Data &amp; BI externe (ESN)</span><span class="sep"> | </span><span class="dates">Juin 2026 – Sept. 2026</span>
+</div>
+<ul>
+  <li>Dashboards Power BI destinés aux clients : <b>suivi 360° de leur activité</b> — état du parc, tickets de maintenance, support, téléphonie, facturation, logistique et SLA contractuels.</li>
+  <li><b>Cahier des charges</b> rédigé avec les équipes internes : besoins KPI, suivis opérationnels, taux de rafraîchissement.</li>
+  <li><b>Refonte de la chaîne ETL : migration Talend → Apache Hop</b>, versionnement Git. Maquettes Canva / PowerPoint validées par les responsables avant développement.</li>
+</ul>
+
+<div class="job">
+  <span class="company">MAGPHARM</span><span class="sep"> | </span><span class="role">Consultant Data – Business Excellence</span><span class="sep"> | </span><span class="dates">Mars 2026 – Mai 2026</span>
+</div>
+<ul>
+  <li><b>Dispositif Data Quality sous KNIME</b> (ETL low-code) et formation des équipes métiers à l'outil pour contrôler la donnée en autonomie.</li>
+  <li>Dashboard de direction (rafraîchissement hebdomadaire) animant les comités : activité sell-in et consommation du budget marketing, comparés <b>vs N-1, vs objectif, vs MAT et vs M-1</b>, déclinés par pôle, gamme et produit — modèle sémantique SSAS Tabular.</li>
+</ul>
+
+<div class="job">
+  <span class="company">KPMG – Transaction Services</span><span class="sep"> | </span><span class="role">Senior Data &amp; Analytics Consultant</span><span class="sep"> | </span><span class="dates">Sept. 2022 – Mars 2026</span>
+</div>
+<div class="job-caption">Deal Advisory — Équipe Paris / Offshore</div>
+
+<div class="subhead">Missions clients M&amp;A</div>
+<ul class="tight">
+  <li><b>5+ deals buy-side et sell-side</b> sur des sociétés à revenu récurrent (SaaS, télécommunications, cybersécurité) : ARR, MRR, churn, cohortes, analyses like-for-like.</li>
+  <li>Client assurance : <b>dashboard publié sur le Portail Client KPMG</b>, actualisé chaque mois pendant 2 ans — ARR, MRR, cohortes, snowball vs N-1 et vs M-1, deep dive jusqu'au niveau le plus fin.</li>
+  <li>2 missions retail : analyses <b>PVM</b>, sell-in, sell-out, saisonnalités.</li>
+  <li>Préparation de larges volumes sous <b>Alteryx</b> intégrés en modèles <b>SSAS Tabular</b> ; databooks Excel dynamiques pour les équipes deal.</li>
+</ul>
+
+<div class="subhead">Développement interne — automatisation (méthode Agile, Azure DevOps)</div>
+<ul class="tight">
+  <li>Automatisation de la chaîne de traitement des <b>analyses récurrentes avancées (ARR, cohortes, roll-forward)</b> — Power BI, Alteryx, SQL Server, SSAS / Tabular Editor, Excel automatisé.</li>
+  <li>Projet mené de bout en bout avec les équipes RH et Planning : <b>dashboard Timesheet &amp; Pipeline M&amp;A de Deal Advisory France</b> — staffing de tous les collaborateurs, détection des collaborateurs sans mission, pipeline (backlog, pitchs, gagnés, déclinés, perdus). <b>Le dashboard le plus sollicité par les Partners de KPMG Paris.</b></li>
+</ul>
+
+<div class="inline-jobs">
+  <div><b>Jumia</b><span class="sep"> | </span><span class="role">Assistant commercial</span><span class="sep"> | </span><span class="dates">Mai – Juil. 2022</span></div>
+  <div><b>BDL – Banque de Développement Local</b><span class="sep"> | </span><span class="role">Stage</span><span class="sep"> | </span><span class="dates">Fév. – Mai 2022</span></div>
+</div>
+
+<h2>FORMATION</h2>
+<div class="edu"><b>Master en Mathématiques Appliquées</b> <span class="school">– USTHB, Alger &nbsp;|&nbsp; 2020 – 2022</span></div>
+<div class="edu"><b>Licence en Probabilités &amp; Statistiques</b> <span class="school">– USTHB, Alger &nbsp;|&nbsp; 2017 – 2020</span></div>
+
+<h2>COMPÉTENCES &amp; CERTIFICATIONS</h2>
+<div class="skill"><span class="label">ETL &amp; préparation :</span> Alteryx (bases de plusieurs millions de lignes, connexions API REST / CSV / SQL Server, protocoles d'alerte data quality, data transformations), KNIME, Apache Hop, Talend (initiation), Power Query</div>
+<div class="skill"><span class="label">Modélisation &amp; analyse :</span> SSAS Tabular, Tabular Editor, SQL Server, DAX (time intelligence, cohortes, ARR / MRR, roll-forward, like-for-like), Python, R, MATLAB</div>
+<div class="skill"><span class="label">Restitution &amp; design :</span> Power BI avancé (DAX, bookmarks, drill-down, UX/UI), Excel niveau M&amp;A KPMG (calculs avancés, SOMME.SI.ENS, RECHERCHEV, TCD, connexion SSAS), Looker Studio (initiation), maquettage PowerPoint / Canva / Figma</div>
+<div class="skill"><span class="label">Industrialisation :</span> Git, Azure DevOps (méthode Agile), VBA Excel, SharePoint</div>
+<div class="skill"><span class="label">Certifications :</span> Microsoft PL-300 &nbsp;·&nbsp; Alteryx Designer Core &nbsp;·&nbsp; Business Intelligence (GOMYCODE)</div>
+
+<h2>LANGUES</h2>
+<div class="langs">
+  <b>Français</b> : Courant (C1) <span class="gap"></span>|<span class="gap"></span>
+  <b>Arabe</b> : Langue maternelle <span class="gap"></span>|<span class="gap"></span>
+  <b>Anglais</b> : Professionnel (B2)
+</div>
+
+</body>
+</html>
