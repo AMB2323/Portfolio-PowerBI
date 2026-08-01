@@ -58,16 +58,12 @@ function Hero() {
             </div>
           </div>
 
-          {/* Portrait fondu dans la page : halo violet diffus, bords dissous,
-              anneau d'accent partiel — pas de cadre photo. */}
-          <div className="relative mx-auto w-52 shrink-0 sm:w-60 lg:mx-0 lg:w-72">
+          {/* Portrait détouré posé sur le fond du site : halo violet diffus
+              derrière, buste qui se dissout en bas — pas de cadre photo. */}
+          <div className="relative mx-auto w-56 shrink-0 sm:w-64 lg:mx-0 lg:w-80">
             <div
               aria-hidden="true"
-              className="bg-accent-gradient absolute inset-2 rounded-full opacity-25 blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-6 bottom-2 top-6 rounded-full border border-accent/25"
+              className="bg-accent-gradient absolute inset-x-3 bottom-4 top-10 rounded-[45%] opacity-30 blur-2xl"
             />
             <Image
               src="/portrait.webp"
@@ -75,8 +71,8 @@ function Hero() {
               width={800}
               height={1000}
               priority
-              sizes="(min-width: 1024px) 18rem, 15rem"
-              className="portrait-blend relative aspect-[4/5] w-full object-cover object-top"
+              sizes="(min-width: 1024px) 20rem, 16rem"
+              className="relative w-full"
             />
           </div>
         </div>
