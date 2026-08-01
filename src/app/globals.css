@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+/*
+  Palette — vocabulaire d'un rapport BI :
+  - Encre        #12161C  (texte sombre / fond du thème sombre)
+  - Panneau      #1A212B  (cartes du thème sombre)
+  - Grille       #F2F4F7  (fond du thème clair, gris froid — pas de crème)
+  - Carte        #FFFFFF
+  - Ambre mesure #B97B14 / #E0A33E  (accent : chiffres clés, liseré)
+  - Bleu rapport #3D6B99  (liens, éléments secondaires)
+  - Vert cible   #2E7D5B  (statut positif)
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e9edf2;
+  --foreground: #12161c;
+  --muted: #55606e;
+  --border: #d4dae2;
+  --accent: #b97b14;
+  --accent-strong: #8f5e0d;
+  --report-blue: #33608c;
+  --target-green: #2e7d5b;
+}
+
+.dark {
+  --background: #12161c;
+  --surface: #1a212b;
+  --surface-2: #232c39;
+  --foreground: #e8ebef;
+  --muted: #9aa5b3;
+  --border: #303a48;
+  --accent: #e0a33e;
+  --accent-strong: #edbd6c;
+  --report-blue: #7ba7d4;
+  --target-green: #58b98d;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-report-blue: var(--report-blue);
+  --color-target-green: var(--target-green);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Révélation au scroll — seule orchestration animée du site */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
