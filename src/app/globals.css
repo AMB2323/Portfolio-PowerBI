@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 /*
-  Palette — vocabulaire d'un rapport BI :
-  - Encre        #12161C  (texte sombre / fond du thème sombre)
+  Palette — vocabulaire d'un rapport BI, accent violet moderne :
+  - Encre        #12161C  (texte clair / fond du thème sombre, thème principal)
   - Panneau      #1A212B  (cartes du thème sombre)
-  - Grille       #F2F4F7  (fond du thème clair, gris froid — pas de crème)
-  - Carte        #FFFFFF
-  - Ambre mesure #B97B14 / #E0A33E  (accent : chiffres clés, liseré)
-  - Bleu rapport #3D6B99  (liens, éléments secondaires)
-  - Vert cible   #2E7D5B  (statut positif)
+  - Grille       #F2F4F7  (fond du thème clair, gris froid)
+  - Violet       #7C3AED → #C084FC  (accent en dégradé : chiffres clés, CTA, liserés)
+  - Bleu rapport #33608C / #7BA7D4  (liens, éléments secondaires)
+  - Vert cible   #2E7D5B / #58B98D  (statut positif)
 */
 
 :root {
@@ -18,8 +17,10 @@
   --foreground: #12161c;
   --muted: #55606e;
   --border: #d4dae2;
-  --accent: #b97b14;
-  --accent-strong: #8f5e0d;
+  --accent: #6d28d9;
+  --accent-strong: #5b21b6;
+  --grad-from: #6d28d9;
+  --grad-to: #a855f7;
   --report-blue: #33608c;
   --target-green: #2e7d5b;
 }
@@ -31,8 +32,10 @@
   --foreground: #e8ebef;
   --muted: #9aa5b3;
   --border: #303a48;
-  --accent: #e0a33e;
-  --accent-strong: #edbd6c;
+  --accent: #a78bfa;
+  --accent-strong: #c4b5fd;
+  --grad-from: #7c3aed;
+  --grad-to: #c084fc;
   --report-blue: #7ba7d4;
   --target-green: #58b98d;
 }
@@ -72,6 +75,18 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Dégradé violet signature — fonds (CTA, liserés) et texte (valeurs KPI) */
+.bg-accent-gradient {
+  background-image: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+}
+
+.text-accent-gradient {
+  background-image: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Révélation au scroll — seule orchestration animée du site */

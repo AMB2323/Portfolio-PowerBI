@@ -25,7 +25,7 @@ export default function OpengraphImage() {
           style={{
             width: "64px",
             height: "6px",
-            backgroundColor: "#E0A33E",
+            backgroundImage: "linear-gradient(135deg, #7C3AED, #C084FC)",
             marginBottom: "36px",
           }}
         />
@@ -41,7 +41,7 @@ export default function OpengraphImage() {
             gap: "40px",
             marginTop: 56,
             fontSize: 26,
-            color: "#E0A33E",
+            color: "#A78BFA",
           }}
         >
           {profile.kpis.slice(0, 3).map((kpi) => (

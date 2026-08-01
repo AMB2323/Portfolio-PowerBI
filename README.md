@@ -33,7 +33,7 @@ Autres emplacements utiles :
 
 ## Direction artistique (résumé)
 
-- **Palette** : encre `#12161C`, panneau `#1A212B`, grille `#F2F4F7`, ambre mesure `#B97B14` / `#E0A33E`, bleu rapport `#33608C`, vert cible `#2E7D5B`.
+- **Palette** : encre `#12161C`, panneau `#1A212B`, grille `#F2F4F7`, violet signature en dégradé `#7C3AED → #C084FC` (clair : `#6D28D9 → #A855F7`), bleu rapport `#33608C`, vert cible `#2E7D5B`. Thème sombre par défaut.
 - **Typographie** : Archivo (display), Inter (texte), IBM Plex Mono (données, labels, métadonnées).
 - **Élément signature** : le site se lit comme un rapport Power BI — bandeau de KPIs chiffrés en hero, navigation façon slicers, libellés d'onglets en monospace.
 - **Animation** : une seule orchestration (révélation au scroll), `prefers-reduced-motion` respecté.
