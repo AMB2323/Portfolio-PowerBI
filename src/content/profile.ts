@@ -87,7 +87,7 @@ export const profile = {
   /** Mention de confidentialité affichée sur les études de cas. */
   confidentiality: {
     badge: "Données anonymisées",
-    note: "Les captures présentées utilisent des données anonymisées ou fictives : aucun chiffre, nom de client ou référence produit réels n'y figure. Les logos et chartes graphiques appartiennent à leurs propriétaires respectifs.",
+    note: "Les captures présentées utilisent des données anonymisées ou fictives et les logos des entreprises y sont masqués : aucun chiffre, nom de client ou référence produit réels n'y figure. Seules la structure des rapports et les décisions de conception sont montrées.",
   },
   contact: {
     email: "aminebezzi@outlook.com",
