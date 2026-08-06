@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { profile, type Project } from "@/content/profile";
+import { AnonymizedBadge } from "@/components/AnonymizedBadge";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -54,7 +55,7 @@ export default async function ProjectPage({ params }: PageProps) {
         <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
           {project.name}
         </h1>
-        <ul className="mt-4 flex flex-wrap gap-1.5">
+        <ul className="mt-4 flex flex-wrap items-center gap-1.5">
           {project.stack.map((tech) => (
             <li
               key={tech}
@@ -63,7 +64,13 @@ export default async function ProjectPage({ params }: PageProps) {
               {tech}
             </li>
           ))}
+          <li>
+            <AnonymizedBadge />
+          </li>
         </ul>
+        <p className="mt-4 max-w-3xl rounded-md border border-border bg-surface px-4 py-3 text-sm leading-relaxed text-muted">
+          {profile.confidentiality.note}
+        </p>
       </header>
 
       {project.coverImage ? (
@@ -77,8 +84,9 @@ export default async function ProjectPage({ params }: PageProps) {
             sizes="(min-width: 896px) 896px, 100vw"
             className="w-full"
           />
-          <figcaption className="border-t border-border px-4 py-2 font-mono text-xs text-muted">
-            {project.coverImage.alt}
+          <figcaption className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-border px-4 py-2 font-mono text-xs text-muted">
+            <AnonymizedBadge />
+            <span className="min-w-0 flex-1">{project.coverImage.alt}</span>
           </figcaption>
         </figure>
       ) : (
@@ -139,8 +147,9 @@ export default async function ProjectPage({ params }: PageProps) {
               sizes="(min-width: 896px) 896px, 100vw"
               className="w-full"
             />
-            <figcaption className="border-t border-border px-4 py-2 font-mono text-xs text-muted">
-              {image.alt}
+            <figcaption className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-border px-4 py-2 font-mono text-xs text-muted">
+              <AnonymizedBadge />
+              <span className="min-w-0 flex-1">{image.alt}</span>
             </figcaption>
           </figure>
         ))}

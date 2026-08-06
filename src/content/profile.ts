@@ -74,7 +74,7 @@ export type LanguageSkill = {
 export const profile = {
   name: "Amine Bezzi",
   title: "Consultant Data & Analytics",
-  subtitle: "M&A · Power BI · Alteryx",
+  subtitle: "Power BI · Alteryx",
   yearsOfExperience: 4,
   positioning:
     "Je transforme des données complexes en leviers de décision, de l'ETL à la visualisation.",
@@ -84,6 +84,11 @@ export const profile = {
     "Aujourd'hui en mission pour des directions métier (pharma, services IT), je couvre toute la chaîne : cadrage et cahier des charges, ETL (Alteryx, KNIME, Apache Hop, Talend), qualité des données, modélisation sémantique SSAS, mesures DAX et design de dashboards lisibles par un comité de direction.",
     "Ce qui m'importe : des chiffres fiables, des modèles propres, et des rapports que les décideurs utilisent vraiment.",
   ],
+  /** Mention de confidentialité affichée sur les études de cas. */
+  confidentiality: {
+    badge: "Données anonymisées",
+    note: "Les captures présentées utilisent des données anonymisées ou fictives : aucun chiffre, nom de client ou référence produit réels n'y figure. Les logos et chartes graphiques appartiennent à leurs propriétaires respectifs.",
+  },
   contact: {
     email: "aminebezzi@outlook.com",
     phoneFr: "+33 7 65 82 69 21",
@@ -100,7 +105,7 @@ export const profile = {
     {
       value: "10+",
       label: "clients M&A",
-      detail: "buy-side & sell-side, KPMG TS",
+      detail: "SaaS · télécoms · cybersécurité · retail · assurance",
     },
     {
       value: "3",
@@ -144,7 +149,7 @@ export const profile = {
     {
       role: "Restitution & design",
       description:
-        "Power BI avancé : DAX, bookmarks, drill-down, UX/UI soigné. Excel niveau M&A KPMG : calculs avancés, SOMME.SI.ENS, RECHERCHEV, TCD, connexion SSAS. Maquettage des propositions de design sous PowerPoint, Canva et Figma.",
+        "Power BI avancé : DAX, bookmarks, drill-down, UX/UI soigné. Excel niveau M&A KPMG : calculs avancés, tableaux croisés dynamiques, connexion SSAS. Maquettage des propositions de design sous PowerPoint, Canva et Figma.",
       tools: [
         "Power BI (avancé)",
         "Excel (niveau M&A KPMG)",

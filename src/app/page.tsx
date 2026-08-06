@@ -4,6 +4,7 @@ import { profile } from "@/content/profile";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ContactForm } from "@/components/ContactForm";
+import { AnonymizedBadge } from "@/components/AnonymizedBadge";
 
 export default function Home() {
   return (
@@ -81,8 +82,8 @@ function Hero() {
             d'un rapport Power BI — chiffres réels du parcours. */}
         <dl className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {profile.kpis.map((kpi, i) => (
-            <Reveal key={kpi.label} delay={i * 90}>
-              <div className="rounded-lg border border-border bg-background p-4">
+            <Reveal key={kpi.label} delay={i * 90} className="h-full">
+              <div className="h-full rounded-lg border border-border bg-background p-4">
                 <div
                   className="bg-accent-gradient mb-3 h-0.5 w-8"
                   aria-hidden="true"
@@ -235,6 +236,9 @@ function Projects() {
             tab="projets"
             title="Études de cas — dashboards livrés"
           />
+          <p className="-mt-4 mb-8 max-w-3xl text-sm leading-relaxed text-muted">
+            {profile.confidentiality.note}
+          </p>
         </Reveal>
         <div className="space-y-6">
           {profile.projects.map((project, i) => (
@@ -252,6 +256,7 @@ function Projects() {
                       sizes="(min-width: 768px) 40vw, 100vw"
                       className="object-cover object-top"
                     />
+                    <AnonymizedBadge className="absolute bottom-2 left-2 bg-background/90 backdrop-blur" />
                   </div>
                 ) : (
                   <div className="bg-accent-gradient relative flex aspect-[16/10] items-center justify-center p-6 md:col-span-2 md:aspect-auto md:min-h-56">
@@ -259,6 +264,7 @@ function Projects() {
                       Projet interne confidentiel
                       <br />— pas de captures publiables —
                     </p>
+                    <AnonymizedBadge className="absolute bottom-2 left-2 border-white/40 bg-background/90 backdrop-blur" />
                   </div>
                 )}
                 <div className="p-5 md:col-span-3 md:p-6">
